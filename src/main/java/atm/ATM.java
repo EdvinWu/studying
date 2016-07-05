@@ -5,11 +5,11 @@ import consts.Consts;
 import consts.Operation;
 
 public abstract class ATM {
-    Display display;
-    CardReader cardReader;
-    Input input;
-    Output output;
-    ServerConnector serverConnector;
+    protected Display display;
+    protected CardReader cardReader;
+    protected Input input;
+    protected Output output;
+    protected ServerConnector serverConnector;
 
     public void insertCard() {
         cardReader.insertCard();
