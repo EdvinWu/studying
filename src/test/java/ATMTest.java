@@ -70,12 +70,12 @@ public class ATMTest {
     @Test
     public void testWrongPin() throws Exception {
         atm.wrongPin();
-        assertEquals(((DisplayImpl)display).getMsg(), Consts.WRONG_PIN.toString());
+        assertEquals(((DisplayImpl)display).getMsg(), Consts.WRONG_PIN_MSG.toString());
     }
 
     @Test
     public void testWithdrawScenario() throws Exception {
-        withdrawScenario(false, false);
+        withdrawScenario(100, Consts.PIN.toString());
 
         assertTrue(((OutputImpl) output).isSuccessful());
         assertEquals(serverConnector.getBalance(Consts.ADDRESS.toString()), 100);
@@ -85,7 +85,7 @@ public class ATMTest {
 
     @Test
     public void testWithdrawFailingAmountScenario() throws Exception {
-        withdrawScenario(true, false);
+        withdrawScenario(1000, Consts.PIN.toString());
 
         assertFalse(((OutputImpl) output).isSuccessful());
         assertEquals(serverConnector.getBalance(Consts.ADDRESS.toString()), 200);
@@ -94,7 +94,7 @@ public class ATMTest {
 
     @Test
     public void testWithdrawFailingPinScenario() throws Exception {
-        withdrawScenario(false, true);
+        withdrawScenario(200, "9999");
 
         assertFalse(((OutputImpl) output).isSuccessful());
         assertEquals(serverConnector.getBalance(Consts.ADDRESS.toString()), 200);
@@ -103,7 +103,7 @@ public class ATMTest {
 
     @Test
     public void testDepositScenario() throws Exception {
-        depositScenario(false);
+        depositScenario(Consts.PIN.toString());
 
         assertTrue(((InputImpl) input).isSuccessful());
         assertEquals(serverConnector.getBalance(Consts.ADDRESS.toString()), 300);
@@ -112,24 +112,23 @@ public class ATMTest {
 
     @Test
     public void testDepositFailingPinScenario() throws Exception {
-        depositScenario(true);
+        depositScenario("9999");
 
         assertFalse(((InputImpl) input).isSuccessful());
         assertEquals(serverConnector.getBalance(Consts.ADDRESS.toString()), 200);
         assertEquals(((DisplayImpl) display).getMsg(), "Wrong PIN");
     }
 
-    private void withdrawScenario(boolean failAmount, boolean failPin) {
+    private void withdrawScenario(int amount, String pin) {
         atm.insertCard();
         ((DisplayImpl)display).setOperation(Operation.WITHDRAW);
 
-        if (failPin)
-            ((CardReaderImpl)cardReader).getCard().setPin("9999");
+
+        ((CardReaderImpl)cardReader).getCard().setPin(pin);
 
         Operation op = atm.chooseOperation();
         if (op == Operation.WITHDRAW) {
             if (atm.checkPin()) {
-                int amount = (failAmount ? 1000 : atm.selectAmount());
                 if (atm.checkSum(amount)) {
                     atm.withdraw(amount);
                 } else {
@@ -141,12 +140,11 @@ public class ATMTest {
         }
     }
 
-    private void depositScenario(boolean failPin) {
+    private void depositScenario(String pin) {
         atm.insertCard();
         ((DisplayImpl)display).setOperation(Operation.DEPOSIT);
 
-        if (failPin)
-            ((CardReaderImpl)cardReader).getCard().setPin("9999");
+        ((CardReaderImpl)cardReader).getCard().setPin(pin);
         Operation op = atm.chooseOperation();
         if (op == Operation.DEPOSIT) {
             if (atm.checkPin()) {

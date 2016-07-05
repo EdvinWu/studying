@@ -5,7 +5,7 @@ public enum Consts {
     PIN("0000"),
     NAME("John Doe"),
     NOT_ENOUGH_AMOUNT("Not enough money on the account"),
-    WRONG_PIN("Wrong PIN");
+    WRONG_PIN_MSG("Wrong PIN");
 
     private String name;
 

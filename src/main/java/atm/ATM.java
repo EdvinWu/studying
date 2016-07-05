@@ -38,7 +38,7 @@ public abstract class ATM {
     }
 
     public void wrongPin() {
-        display.show(Consts.WRONG_PIN.toString());
+        display.show(Consts.WRONG_PIN_MSG.toString());
     }
 
     public void deposit(int amount){
