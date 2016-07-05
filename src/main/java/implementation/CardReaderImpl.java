@@ -16,7 +16,7 @@ public class CardReaderImpl implements CardReader{
 
     @Override
     public void insertCard() {
-        card = new Card("somewhere@nowhere.com","0000");
+        card = new Card("0000","somewhere@nowhere.com");
     }
 
     @Override
