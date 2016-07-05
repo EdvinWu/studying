@@ -31,6 +31,7 @@ public abstract class ATM {
     public void withdraw(int amount) {
         output.withdraw(amount);
         serverConnector.changeBalance(cardReader.getAdress(),-amount);
+        getBalance();
     }
 
     public void notEnoughError() {
@@ -44,6 +45,7 @@ public abstract class ATM {
     public void deposit(int amount){
         input.deposit(amount);
         serverConnector.changeBalance(cardReader.getAdress(),amount);
+        getBalance();
 
     }
 
@@ -54,7 +56,7 @@ public abstract class ATM {
 
     public int getBalance(){
         Integer balance = serverConnector.getBalance(cardReader.getAdress());
-        display.show(balance.toString());
+        display.show("Current balance " + balance.toString());
         return balance;
     }
 
