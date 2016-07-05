@@ -3,5 +3,6 @@ package consts;
 public enum Operation {
     WITHDRAW,
     DEPOSIT,
-    INFO;
+    INFO,
+    WRONG_OPERATION;
 }

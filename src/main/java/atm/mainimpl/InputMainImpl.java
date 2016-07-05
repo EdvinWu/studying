@@ -3,14 +3,10 @@ package atm.mainimpl;
 import atm.services.Input;
 
 public class InputMainImpl implements Input {
-    private boolean successful = false;
 
     @Override
     public void deposit(int amount) {
-        successful = true;
+        System.out.println("Received " + amount);
     }
 
-    public boolean isSuccessful() {
-        return successful;
-    }
 }
