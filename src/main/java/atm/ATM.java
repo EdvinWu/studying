@@ -1,5 +1,7 @@
 package atm;
 
+import implementation.Consts;
+
 public abstract class ATM {
     Display display;
     CardReader cardReader;
@@ -30,11 +32,11 @@ public abstract class ATM {
     }
 
     public void notEnoughError() {
-        display.show("Not enough money on the account");
+        display.show(Consts.NOT_ENOUGH_AMOUNT.toString());
     }
 
     public void wrongPin() {
-        display.show("Wrong PIN");
+        display.show(Consts.WRONG_PIN.toString());
     }
 
     public void deposit(int amount){
@@ -50,6 +52,10 @@ public abstract class ATM {
 
     public int getBalance(){
         return serverConnector.getBalance(cardReader.getAdress());
+    }
+
+    public String getAccountName(){
+        return serverConnector.getName(cardReader.getAdress());
     }
 
 }

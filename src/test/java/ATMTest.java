@@ -49,13 +49,25 @@ public class ATMTest {
     }
 
     @Test
-    public void testNotEnoughError() throws Exception {
+    public void testGetBalance() throws Exception {
+        assertEquals(atm.getBalance(), 200);
+    }
 
+    @Test
+    public void testGetAccountName() throws Exception {
+        assertEquals(atm.getAccountName(), Consts.NAME.toString());
+    }
+
+    @Test
+    public void testNotEnoughError() throws Exception {
+        atm.notEnoughError();
+        assertEquals(((DisplayImpl)display).getMsg(), Consts.NOT_ENOUGH_AMOUNT.toString());
     }
 
     @Test
     public void testWrongPin() throws Exception {
-
+        atm.wrongPin();
+        assertEquals(((DisplayImpl)display).getMsg(), Consts.WRONG_PIN.toString());
     }
 
     @Test
