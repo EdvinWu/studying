@@ -7,11 +7,20 @@ public class ServerConnectorImpl implements ServerConnector {
 
     @Override
     public int getBalance(String address) {
-        return balance;
+        if (address.equals("somewhere@nowhere.com")){
+
+            return balance;
+        }else {
+            return -1;
+        }
+
     }
 
     @Override
     public void changeBalance(String address, int diff) {
-        balance += diff;
+        if (address.equals("somewhere@nowhere.com")){
+
+            balance += diff;
+        }
     }
 }
