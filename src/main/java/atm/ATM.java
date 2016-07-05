@@ -50,4 +50,8 @@ public abstract class ATM {
 
     }
 
+    public int getBalance(){
+        return serverConnector.getBalance(cardReader.getAdress());
+    }
+
 }
