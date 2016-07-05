@@ -7,7 +7,8 @@ public class ATMTest {
 
     CardReader cardReader = createTestCardReader();
     Display display = createTestDisplay();
-    ATM atm = new TestATM(cardReader, display);
+    ServerConnector serverConnector = createServerConnector();
+    ATM atm = new TestATM(cardReader, display, serverConnector);
 
     @Before
     public void prepareTests() {
@@ -34,12 +35,13 @@ public class ATMTest {
 
     @Test
     public void testSelectAmount() throws Exception {
-
+        int actual = atm.selectAmount();
+        assertEquals(actual, 0);
     }
 
     @Test
     public void testCheckSum() throws Exception {
-
+        assertTrue(atm.checkSum(atm.selectAmount()));
     }
 
     @Test
@@ -95,6 +97,19 @@ public class ATMTest {
             @Override
             public String getPin() {
                 return "0000";
+            }
+        };
+    }
+
+    public static ServerConnector createServerConnector() {
+        return new ServerConnector() {
+            @Override
+            public int getBalance(String address) {
+                return 0;
+            }
+
+            @Override
+            public void changeBalance(String address, int diff) {
             }
         };
     }
