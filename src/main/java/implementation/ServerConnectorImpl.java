@@ -5,7 +5,6 @@ import atm.ServerConnector;
 
 public class ServerConnectorImpl implements ServerConnector {
     private Account account = new Account();
-
     @Override
     public int getBalance(String address) {
         if (address.equals(account.getAddress())) {
