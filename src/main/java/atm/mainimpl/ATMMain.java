@@ -2,13 +2,13 @@ package atm.mainimpl;
 
 import atm.ATM;
 import atm.services.*;
+import implementation.*;
 
 public class ATMMain extends ATM {
-    public ATMMain(CardReader cardReader, Display display, ServerConnector serverConnector, Output output, Input input) {
-        this.cardReader = cardReader;
-        this.display = display;
-        this.serverConnector = serverConnector;
-        this.output = output;
-        this.input = input;
-    }
+    CardReader cardReader = new CardReaderImpl();
+    Display display = new DisplayImpl();
+    ServerConnector serverConnector = new ServerConnectorImpl();
+    Output output = new OutputImpl();
+    Input input = new InputImpl();
+
 }
