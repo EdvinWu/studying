@@ -106,34 +106,41 @@ public class ATMTest {
 
     private void withdrawScenario(boolean failAmount, boolean failPin) {
         atm.insertCard();
+        ((DisplayImpl)display).setOperation(Operation.WITHDRAW);
 
         if (failPin)
             ((CardReaderImpl)cardReader).getCard().setPin("9999");
 
-        if (atm.checkPin()) {
-            int amount = (failAmount ? 1000 : atm.selectAmount());
-            if (atm.checkSum(amount)) {
-                atm.withdraw(amount);
+        Operation op = atm.chooseOperation();
+        if (op == Operation.WITHDRAW) {
+            if (atm.checkPin()) {
+                int amount = (failAmount ? 1000 : atm.selectAmount());
+                if (atm.checkSum(amount)) {
+                    atm.withdraw(amount);
+                } else {
+                    atm.notEnoughError();
+                }
             } else {
-                atm.notEnoughError();
+                atm.wrongPin();
             }
-        } else {
-            atm.wrongPin();
         }
     }
 
     private void depositScenario(boolean failPin) {
         atm.insertCard();
+        ((DisplayImpl)display).setOperation(Operation.DEPOSIT);
 
         if (failPin)
             ((CardReaderImpl)cardReader).getCard().setPin("9999");
+        Operation op = atm.chooseOperation();
+        if (op == Operation.DEPOSIT) {
+            if (atm.checkPin()) {
+                int amount = atm.selectAmount();
+                atm.deposit(amount);
 
-        if (atm.checkPin()) {
-            int amount = atm.selectAmount();
-            atm.deposit(amount);
-
-        } else {
-            atm.wrongPin();
+            } else {
+                atm.wrongPin();
+            }
         }
     }
 

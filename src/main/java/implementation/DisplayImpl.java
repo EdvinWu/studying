@@ -1,9 +1,15 @@
 package implementation;
 
 import atm.Display;
+import atm.Operation;
 
 public class DisplayImpl implements Display{
     private String msg = "";
+    private Operation operation = Operation.WITHDRAW;
+
+    public void setOperation(Operation op) {
+        operation = op;
+    }
 
     @Override
     public void show(String s) {
@@ -18,6 +24,11 @@ public class DisplayImpl implements Display{
     @Override
     public String getPin() {
         return Consts.PIN.toString();
+    }
+
+    @Override
+    public Operation getOperation() {
+        return operation;
     }
 
     public String getMsg() {

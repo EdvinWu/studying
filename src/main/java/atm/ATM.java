@@ -16,13 +16,6 @@ public abstract class ATM {
         return cardReader.checkPin(pin);
     }
 
-    public void selectWithdrawal() {
-    }
-
-    public void selectDeposit(){
-
-    }
-
     public int selectAmount() {
         return display.getAmount();
     }
@@ -47,6 +40,11 @@ public abstract class ATM {
     public void deposit(int amount){
         input.deposit(amount);
         serverConnector.changeBalance(cardReader.getAdress(),amount);
+
+    }
+
+    public Operation chooseOperation() {
+        return display.getOperation();
 
     }
 
