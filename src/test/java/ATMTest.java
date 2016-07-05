@@ -21,8 +21,8 @@ public class ATMTest {
 
     @Test
     public void testInsertCard() throws Exception {
-        assertEquals(cardReader.getAdress(), "somewhere@nowhere.com");
-        assertTrue(cardReader.checkPin("0000"));
+        assertEquals(cardReader.getAdress(), Consts.ADDRESS.toString());
+        assertTrue(cardReader.checkPin(Consts.PIN.toString()));
     }
 
 
@@ -83,7 +83,7 @@ public class ATMTest {
         }
 
         assertTrue(((OutputImpl) output).isSuccessful());
-        assertEquals(serverConnector.getBalance(""), 100);
+        assertEquals(serverConnector.getBalance(Consts.ADDRESS.toString()), 100);
 
 
 

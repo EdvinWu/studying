@@ -4,7 +4,7 @@ public abstract class ATM {
     Display display;
     CardReader cardReader;
     Input input;
-    Output output;
+    Output output;                         
     ServerConnector serverConnector;
 
     public void insertCard() {

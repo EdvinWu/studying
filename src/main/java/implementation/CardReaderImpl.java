@@ -16,7 +16,7 @@ public class CardReaderImpl implements CardReader{
 
     @Override
     public void insertCard() {
-        card = new Card("0000","somewhere@nowhere.com");
+        card = new Card(Consts.PIN.toString(),Consts.ADDRESS.toString());
     }
 
     @Override

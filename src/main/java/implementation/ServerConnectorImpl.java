@@ -7,7 +7,7 @@ public class ServerConnectorImpl implements ServerConnector {
 
     @Override
     public int getBalance(String address) {
-        if (address.equals("somewhere@nowhere.com")){
+        if (address.equals(Consts.ADDRESS.toString())){
 
             return balance;
         }else {
@@ -18,7 +18,7 @@ public class ServerConnectorImpl implements ServerConnector {
 
     @Override
     public void changeBalance(String address, int diff) {
-        if (address.equals("somewhere@nowhere.com")){
+        if (address.equals(Consts.ADDRESS.toString())){
 
             balance += diff;
         }

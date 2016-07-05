@@ -15,6 +15,6 @@ public class DisplayImpl implements Display{
 
     @Override
     public String getPin() {
-        return "0000";
+        return Consts.PIN.toString();
     }
 }
