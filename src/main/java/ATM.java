@@ -17,16 +17,21 @@ public abstract class ATM {
     public void selectWithdrawal() {
     }
 
+    public void selectDeposit(){
+
+    }
+
     public int selectAmount() {
         return display.getAmount();
     }
 
     public boolean checkSum() {
-        return selectAmount() <= cardReader.getCardAmount();
+        return selectAmount() <= serverConnector.getBalance(cardReader.getAdress());
     }
 
     public void withdraw() {
         output.withdraw(selectAmount());
+        serverConnector.changeBalance(cardReader.getAdress(),-selectAmount());
     }
 
     public void notEnoughError() {
@@ -35,6 +40,12 @@ public abstract class ATM {
 
     public void wrongPin() {
         display.show("Wrong pin");
+    }
+
+    public void deposit(){
+        input.deposit(selectAmount());
+        serverConnector.changeBalance(cardReader.getAdress(),selectAmount());
+
     }
 
 }

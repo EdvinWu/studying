@@ -1,14 +1,7 @@
 public class Card {
     private String pin;
-    private int amount;
+    private String adress;
 
-    public int getAmount() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
 
     public String getPin() {
 
@@ -19,8 +12,16 @@ public class Card {
         this.pin = pin;
     }
 
-    public Card(String pin, int amount) {
+    public String getAdress() {
+        return adress;
+    }
+
+    public void setAdress(String adress) {
+        this.adress = adress;
+    }
+
+    public Card(String pin, String adress) {
         this.pin = pin;
-        this.amount = amount;
+        this.adress = adress;
     }
 }

@@ -1,7 +1,7 @@
 public interface CardReader {
-    Card insertCard();
+    void insertCard();
     boolean checkPin(String pin);
-    int getCardAmount();
+    String getAdress();
 
 
 }
