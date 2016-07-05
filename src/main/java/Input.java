@@ -1,2 +1,3 @@
-public class Input {
+public interface Input {
+
 }
