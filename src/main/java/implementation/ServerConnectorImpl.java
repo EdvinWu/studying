@@ -1,16 +1,17 @@
 package implementation;
 
+import atm.Account;
 import atm.ServerConnector;
 
 public class ServerConnectorImpl implements ServerConnector {
-    int balance = 200;
+    private Account account = new Account();
 
     @Override
     public int getBalance(String address) {
-        if (address.equals(Consts.ADDRESS.toString())){
+        if (address.equals(account.getAddress())) {
 
-            return balance;
-        }else {
+            return account.getBalance();
+        } else {
             return -1;
         }
 
@@ -18,9 +19,17 @@ public class ServerConnectorImpl implements ServerConnector {
 
     @Override
     public void changeBalance(String address, int diff) {
-        if (address.equals(Consts.ADDRESS.toString())){
-
-            balance += diff;
+        if (address.equals(account.getAddress())) {
+            account.changeBalance(diff);
         }
+    }
+
+    @Override
+    public String getName(String address) {
+        if (address.equals(account.getAddress())) {
+
+            return account.getAccountHolderName();
+        }
+        return "wrong address";
     }
 }
