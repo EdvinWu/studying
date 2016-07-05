@@ -7,7 +7,7 @@ public class Main {
         Operation choose = atmMain.chooseOperation();
         int amount;
         switch (choose) {
-            case DEPOSIT:
+            case WITHDRAW:
                 atmMain.insertCard();
                 amount = atmMain.selectAmount();
                 if (atmMain.checkPin()) {
@@ -21,19 +21,23 @@ public class Main {
                 }
                 break;
 
-            case WITHDRAW:
+            case DEPOSIT:
                 atmMain.insertCard();
                 amount = atmMain.selectAmount();
                 if (atmMain.checkPin()) {
-                    atmMain.withdraw(amount);
+                    atmMain.deposit(amount);
                 } else {
                     atmMain.wrongPin();
                 }
                 break;
             case INFO:
                 atmMain.insertCard();
-                atmMain.getAccountName();
-                atmMain.getBalance();
+                if (atmMain.checkPin()){
+                    atmMain.getAccountName();
+                    atmMain.getBalance();
+                }else{
+                    atmMain.wrongPin();
+                }
                 break;
             default:
                 System.out.println("wrong entry");
