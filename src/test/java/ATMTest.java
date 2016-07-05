@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -5,19 +6,24 @@ import static org.junit.Assert.*;
 public class ATMTest {
 
     CardReader cardReader = createTestCardReader();
-    ATM atm = new TestATM(cardReader);
+    Display display = createTestDisplay();
+    ATM atm = new TestATM(cardReader, display);
+
+    @Before
+    public void prepareTests() {
+        atm.insertCard();
+    }
 
     @Test
     public void testInsertCard() throws Exception {
-        atm.insertCard();
-        assertEquals(cardReader.getCardAmount(), 0);
+        assertEquals(cardReader.getAdress(), "somewhere@nowhere.com");
         assertTrue(cardReader.checkPin("0000"));
-
     }
 
 
     @Test
     public void testCheckPin() throws Exception {
+        assertTrue(atm.checkPin());
 
     }
 
@@ -53,19 +59,42 @@ public class ATMTest {
 
     public static CardReader createTestCardReader() {
         return new CardReader() {
+            Card card;
+
             @Override
-            public Card insertCard() {
-                return new Card("0000", 0);
+            public void insertCard() {
+                card = new Card("0000", "somewhere@nowhere.com");
             }
 
             @Override
             public boolean checkPin(String pin) {
-                return true;
+                return card.getPin().equals(pin);
             }
 
             @Override
-            public int getCardAmount() {
+            public String getAdress() {
+                return card.getAdress();
+            }
+
+
+        };
+    }
+
+    public static Display createTestDisplay() {
+        return new Display() {
+            @Override
+            public void show(String s) {
+
+            }
+
+            @Override
+            public int getAmount() {
                 return 0;
+            }
+
+            @Override
+            public String getPin() {
+                return "0000";
             }
         };
     }

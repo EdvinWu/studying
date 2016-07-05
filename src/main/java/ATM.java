@@ -25,13 +25,13 @@ public abstract class ATM {
         return display.getAmount();
     }
 
-    public boolean checkSum() {
-        return selectAmount() <= serverConnector.getBalance(cardReader.getAdress());
+    public boolean checkSum(int amount) {
+        return amount <= serverConnector.getBalance(cardReader.getAdress());
     }
 
-    public void withdraw() {
-        output.withdraw(selectAmount());
-        serverConnector.changeBalance(cardReader.getAdress(),-selectAmount());
+    public void withdraw(int amount) {
+        output.withdraw(amount);
+        serverConnector.changeBalance(cardReader.getAdress(),-amount);
     }
 
     public void notEnoughError() {
@@ -42,9 +42,9 @@ public abstract class ATM {
         display.show("Wrong pin");
     }
 
-    public void deposit(){
-        input.deposit(selectAmount());
-        serverConnector.changeBalance(cardReader.getAdress(),selectAmount());
+    public void deposit(int amount){
+        input.deposit(amount);
+        serverConnector.changeBalance(cardReader.getAdress(),amount);
 
     }
 
