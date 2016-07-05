@@ -10,7 +10,7 @@ public class DisplayImpl implements Display{
 
     @Override
     public int getAmount() {
-        return 0;
+        return 100;
     }
 
     @Override
