@@ -1,3 +1,5 @@
+package atm;
+
 public interface Display {
     public void show(String s);
 

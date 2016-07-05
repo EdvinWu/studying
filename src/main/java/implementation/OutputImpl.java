@@ -1,4 +1,6 @@
 package implementation;
 
-public class OutputImpl {
+import atm.Output;
+
+public class OutputImpl implements Output {
 }

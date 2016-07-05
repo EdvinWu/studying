@@ -1,3 +1,5 @@
+import atm.*;
+
 public class TestATM extends ATM{
     public TestATM(CardReader cardReader, Display display, ServerConnector serverConnector, Output output, Input input) {
         this.cardReader = cardReader;

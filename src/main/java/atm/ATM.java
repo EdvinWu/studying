@@ -1,3 +1,5 @@
+package atm;
+
 public abstract class ATM {
     Display display;
     CardReader cardReader;
