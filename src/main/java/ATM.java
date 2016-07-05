@@ -1,10 +1,9 @@
-public class ATM {
+public abstract class ATM {
     Display display;
     CardReader cardReader;
     Input input;
     Output output;
     ServerConnector serverConnector;
-
 
     public void insertCard() {
         cardReader.insertCard();
@@ -37,4 +36,5 @@ public class ATM {
     public void wrongPin() {
         display.show("Wrong pin");
     }
+
 }
