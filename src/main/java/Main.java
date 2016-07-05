@@ -2,45 +2,53 @@ import atm.mainimpl.ATMMain;
 import consts.Operation;
 
 public class Main {
+    static ATMMain atmMain = new ATMMain();
+
     public static void main(String[] args) {
-        ATMMain atmMain = new ATMMain();
         Operation choose = atmMain.chooseOperation();
-        int amount;
+        atmMain.insertCard();
+        if (atmMain.checkPin()){
+
+            switchOperation(choose);
+        }else{
+            atmMain.wrongPin();
+        }
+    }
+
+    private static void switchOperation(Operation choose) {
         switch (choose) {
             case WITHDRAW:
-                atmMain.insertCard();
-                amount = atmMain.selectAmount();
-                if (atmMain.checkPin()) {
-                    if (atmMain.checkSum(amount)) {
-                        atmMain.withdraw(amount);
-                    } else {
-                        atmMain.notEnoughError();
-                    }
-                } else {
-                    atmMain.wrongPin();
-                }
+                withdraw();
                 break;
-
             case DEPOSIT:
-                atmMain.insertCard();
-                amount = atmMain.selectAmount();
-                if (atmMain.checkPin()) {
-                    atmMain.deposit(amount);
-                } else {
-                    atmMain.wrongPin();
-                }
+                deposit();
                 break;
             case INFO:
-                atmMain.insertCard();
-                if (atmMain.checkPin()){
-                    atmMain.getAccountName();
-                    atmMain.getBalance();
-                }else{
-                    atmMain.wrongPin();
-                }
+                info();
                 break;
             default:
                 System.out.println("wrong entry");
         }
+    }
+
+    private static void info() {
+        atmMain.getAccountName();
+        atmMain.getBalance();
+    }
+
+    private static void deposit() {
+        int amount = atmMain.selectAmount();
+        atmMain.deposit(amount);
+    }
+
+    private static void withdraw() {
+        int amount = atmMain.selectAmount();
+        if (atmMain.checkSum(amount)) {
+            atmMain.withdraw(amount);
+        } else {
+            atmMain.notEnoughError();
+        }
+
+
     }
 }
