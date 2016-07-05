@@ -2,7 +2,7 @@ package atm.mainimpl;
 
 import atm.services.Output;
 
-public class OutputMainImpl implements Output {
+public class OutputConsoleImpl implements Output {
 
     @Override
     public void withdraw(int amount) {

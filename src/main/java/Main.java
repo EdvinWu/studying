@@ -1,17 +1,17 @@
-import atm.mainimpl.ATMMain;
+import atm.mainimpl.ATMConsole;
 import consts.Operation;
 
 public class Main {
-    static ATMMain atmMain = new ATMMain();
+    static ATMConsole atmConsole = new ATMConsole();
 
     public static void main(String[] args) {
-        Operation choose = atmMain.chooseOperation();
-        atmMain.insertCard();
-        if (atmMain.checkPin()){
+        Operation choose = atmConsole.chooseOperation();
+        atmConsole.insertCard();
+        if (atmConsole.checkPin()){
 
             switchOperation(choose);
         }else{
-            atmMain.wrongPin();
+            atmConsole.wrongPin();
         }
     }
 
@@ -32,21 +32,21 @@ public class Main {
     }
 
     private static void info() {
-        atmMain.getAccountName();
-        atmMain.getBalance();
+        atmConsole.getAccountName();
+        atmConsole.getBalance();
     }
 
     private static void deposit() {
-        int amount = atmMain.selectAmount();
-        atmMain.deposit(amount);
+        int amount = atmConsole.selectAmount();
+        atmConsole.deposit(amount);
     }
 
     private static void withdraw() {
-        int amount = atmMain.selectAmount();
-        if (atmMain.checkSum(amount)) {
-            atmMain.withdraw(amount);
+        int amount = atmConsole.selectAmount();
+        if (atmConsole.checkSum(amount)) {
+            atmConsole.withdraw(amount);
         } else {
-            atmMain.notEnoughError();
+            atmConsole.notEnoughError();
         }
 
 

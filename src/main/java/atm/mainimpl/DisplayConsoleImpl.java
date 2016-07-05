@@ -6,7 +6,7 @@ import consts.Operation;
 
 import java.util.Scanner;
 
-public class DisplayMainImpl implements Display{
+public class DisplayConsoleImpl implements Display{
     private Scanner sc = new Scanner(System.in);
 
     @Override

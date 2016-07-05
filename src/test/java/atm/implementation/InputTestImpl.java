@@ -1,12 +1,12 @@
-package implementation;
+package atm.implementation;
 
-import atm.services.Output;
+import atm.services.Input;
 
-public class OutputImpl implements Output {
+public class InputTestImpl implements Input {
     private boolean successful = false;
 
     @Override
-    public void withdraw(int amount) {
+    public void deposit(int amount) {
         successful = true;
     }
 

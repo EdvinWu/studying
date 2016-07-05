@@ -1,9 +1,9 @@
-package implementation;
+package atm.mainimpl;
 
 import atm.entity.Account;
 import atm.services.ServerConnector;
 
-public class ServerConnectorImpl implements ServerConnector {
+public class ServerConnectorConsoleImpl implements ServerConnector {
     private Account account = new Account();
     @Override
     public int getBalance(String address) {

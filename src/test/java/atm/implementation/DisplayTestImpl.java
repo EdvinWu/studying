@@ -1,10 +1,10 @@
-package implementation;
+package atm.implementation;
 
 import atm.services.Display;
 import consts.Operation;
 import consts.Consts;
 
-public class DisplayImpl implements Display{
+public class DisplayTestImpl implements Display{
     private String msg = "";
     private Operation operation = Operation.WITHDRAW;
 

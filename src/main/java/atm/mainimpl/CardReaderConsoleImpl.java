@@ -4,7 +4,7 @@ import atm.entity.Card;
 import atm.services.CardReader;
 import consts.Consts;
 
-public class CardReaderMainImpl implements CardReader{
+public class CardReaderConsoleImpl implements CardReader{
     private Card card;
 
     public Card getCard() {

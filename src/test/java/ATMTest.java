@@ -2,7 +2,7 @@ import atm.*;
 import atm.services.*;
 import consts.Consts;
 import consts.Operation;
-import implementation.*;
+import atm.implementation.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,11 +10,11 @@ import static org.junit.Assert.*;
 
 public class ATMTest {
 
-    CardReader cardReader = new CardReaderImpl();
-    Display display = new DisplayImpl();
-    ServerConnector serverConnector = new ServerConnectorImpl();
+    CardReader cardReader = new CardReaderTestImpl();
+    Display display = new DisplayTestImpl();
+    ServerConnector serverConnector = new ServerConnectorTestImpl();
     Output output = new OutputImpl();
-    Input input = new InputImpl();
+    Input input = new InputTestImpl();
     ATM atm = new TestATM(cardReader, display, serverConnector, output, input);
 
     @Before
@@ -64,13 +64,13 @@ public class ATMTest {
     @Test
     public void testNotEnoughError() throws Exception {
         atm.notEnoughError();
-        assertEquals(((DisplayImpl)display).getMsg(), Consts.NOT_ENOUGH_AMOUNT.toString());
+        assertEquals(((DisplayTestImpl)display).getMsg(), Consts.NOT_ENOUGH_AMOUNT.toString());
     }
 
     @Test
     public void testWrongPin() throws Exception {
         atm.wrongPin();
-        assertEquals(((DisplayImpl)display).getMsg(), Consts.WRONG_PIN_MSG.toString());
+        assertEquals(((DisplayTestImpl)display).getMsg(), Consts.WRONG_PIN_MSG.toString());
     }
 
     @Test
@@ -79,7 +79,7 @@ public class ATMTest {
 
         assertTrue(((OutputImpl) output).isSuccessful());
         assertEquals(serverConnector.getBalance(Consts.ADDRESS.toString()), 100);
-        assertEquals(((DisplayImpl) display).getMsg(), "");
+        assertEquals(((DisplayTestImpl) display).getMsg(), "Current balance 100");
     }
 
 
@@ -89,7 +89,7 @@ public class ATMTest {
 
         assertFalse(((OutputImpl) output).isSuccessful());
         assertEquals(serverConnector.getBalance(Consts.ADDRESS.toString()), 200);
-        assertEquals(((DisplayImpl) display).getMsg(), "Not enough money on the account");
+        assertEquals(((DisplayTestImpl) display).getMsg(), "Not enough money on the account");
     }
 
     @Test
@@ -98,33 +98,33 @@ public class ATMTest {
 
         assertFalse(((OutputImpl) output).isSuccessful());
         assertEquals(serverConnector.getBalance(Consts.ADDRESS.toString()), 200);
-        assertEquals(((DisplayImpl) display).getMsg(), "Wrong PIN");
+        assertEquals(((DisplayTestImpl) display).getMsg(), "Wrong PIN");
     }
 
     @Test
     public void testDepositScenario() throws Exception {
         depositScenario(Consts.PIN.toString());
 
-        assertTrue(((InputImpl) input).isSuccessful());
+        assertTrue(((InputTestImpl) input).isSuccessful());
         assertEquals(serverConnector.getBalance(Consts.ADDRESS.toString()), 300);
-        assertEquals(((DisplayImpl) display).getMsg(), "");
+        assertEquals(((DisplayTestImpl) display).getMsg(), "Current balance 300");
     }
 
     @Test
     public void testDepositFailingPinScenario() throws Exception {
         depositScenario("9999");
 
-        assertFalse(((InputImpl) input).isSuccessful());
+        assertFalse(((InputTestImpl) input).isSuccessful());
         assertEquals(serverConnector.getBalance(Consts.ADDRESS.toString()), 200);
-        assertEquals(((DisplayImpl) display).getMsg(), "Wrong PIN");
+        assertEquals(((DisplayTestImpl) display).getMsg(), "Wrong PIN");
     }
 
     private void withdrawScenario(int amount, String pin) {
         atm.insertCard();
-        ((DisplayImpl)display).setOperation(Operation.WITHDRAW);
+        ((DisplayTestImpl)display).setOperation(Operation.WITHDRAW);
 
 
-        ((CardReaderImpl)cardReader).getCard().setPin(pin);
+        ((CardReaderTestImpl)cardReader).getCard().setPin(pin);
 
         Operation op = atm.chooseOperation();
         if (op == Operation.WITHDRAW) {
@@ -142,9 +142,9 @@ public class ATMTest {
 
     private void depositScenario(String pin) {
         atm.insertCard();
-        ((DisplayImpl)display).setOperation(Operation.DEPOSIT);
+        ((DisplayTestImpl)display).setOperation(Operation.DEPOSIT);
 
-        ((CardReaderImpl)cardReader).getCard().setPin(pin);
+        ((CardReaderTestImpl)cardReader).getCard().setPin(pin);
         Operation op = atm.chooseOperation();
         if (op == Operation.DEPOSIT) {
             if (atm.checkPin()) {

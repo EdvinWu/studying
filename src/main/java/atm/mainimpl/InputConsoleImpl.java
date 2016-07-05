@@ -2,7 +2,7 @@ package atm.mainimpl;
 
 import atm.services.Input;
 
-public class InputMainImpl implements Input {
+public class InputConsoleImpl implements Input {
 
     @Override
     public void deposit(int amount) {

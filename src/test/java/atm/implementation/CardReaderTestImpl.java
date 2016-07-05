@@ -1,10 +1,10 @@
-package implementation;
+package atm.implementation;
 
 import atm.entity.Card;
 import atm.services.CardReader;
 import consts.Consts;
 
-public class CardReaderImpl implements CardReader{
+public class CardReaderTestImpl implements CardReader{
     private Card card;
 
     public Card getCard() {
