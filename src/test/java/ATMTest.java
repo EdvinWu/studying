@@ -8,7 +8,9 @@ public class ATMTest {
     CardReader cardReader = createTestCardReader();
     Display display = createTestDisplay();
     ServerConnector serverConnector = createServerConnector();
-    ATM atm = new TestATM(cardReader, display, serverConnector);
+    Output output = createOutput();
+    Input input = createInput();
+    ATM atm = new TestATM(cardReader, display, serverConnector, output, input);
 
     @Before
     public void prepareTests() {
@@ -59,6 +61,23 @@ public class ATMTest {
 
     }
 
+    @Test
+    public void testWithdrawScenario() throws Exception {
+        atm.insertCard();
+        if (atm.checkPin()) {
+            int amount = atm.selectAmount();
+            if (atm.checkSum(amount)) {
+                atm.withdraw(amount);
+            } else {
+                atm.notEnoughError();
+            }
+        } else {
+            atm.wrongPin();
+        }
+
+
+    }
+
     public static CardReader createTestCardReader() {
         return new CardReader() {
             Card card;
@@ -103,13 +122,46 @@ public class ATMTest {
 
     public static ServerConnector createServerConnector() {
         return new ServerConnector() {
+            int balance;
+
             @Override
             public int getBalance(String address) {
-                return 0;
+                return balance;
             }
 
             @Override
             public void changeBalance(String address, int diff) {
+                balance += diff;
+            }
+        };
+    }
+
+    public static Output createOutput() {
+        return new Output() {
+            private boolean successful = false;
+
+            @Override
+            public void withdraw(int amount) {
+                successful = true;
+            }
+
+            public boolean isSuccessful() {
+                return successful;
+            }
+        };
+    }
+
+    public static Input createInput() {
+        return new Input() {
+            private boolean successful = false;
+
+            @Override
+            public void deposit(int amount) {
+                successful = true;
+            }
+
+            public boolean isSuccessful() {
+                return successful;
             }
         };
     }
