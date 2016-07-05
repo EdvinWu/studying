@@ -1,2 +1,3 @@
-public class Output {
+public interface Output {
+    public void withdraw(int amount);
 }

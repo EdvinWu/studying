@@ -1,2 +1,6 @@
-public class CardReader {
+public interface CardReader {
+    Card insertCard();
+    boolean checkPin(String pin);
+
+
 }
