@@ -24,8 +24,7 @@ public class DisplayMainImpl implements Display{
     @Override
     public String getPin() {
         System.out.println("Please, insert your PIN");
-        return sc.nextLine();
-
+        return sc.next();
     }
 
     @Override

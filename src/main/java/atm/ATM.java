@@ -53,11 +53,15 @@ public abstract class ATM {
     }
 
     public int getBalance(){
-        return serverConnector.getBalance(cardReader.getAdress());
+        Integer balance = serverConnector.getBalance(cardReader.getAdress());
+        display.show(balance.toString());
+        return balance;
     }
 
     public String getAccountName(){
-        return serverConnector.getName(cardReader.getAdress());
+        String name = serverConnector.getName(cardReader.getAdress());
+        display.show(name);
+        return name;
     }
 
 }

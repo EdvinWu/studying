@@ -26,7 +26,6 @@ public class Main {
                 amount = atmMain.selectAmount();
                 if (atmMain.checkPin()) {
                     atmMain.withdraw(amount);
-                    atmMain.notEnoughError();
                 } else {
                     atmMain.wrongPin();
                 }
