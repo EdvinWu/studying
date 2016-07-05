@@ -1,7 +1,8 @@
 package implementation;
 
-import atm.Card;
-import atm.CardReader;
+import atm.entity.Card;
+import atm.services.CardReader;
+import consts.Consts;
 
 public class CardReaderImpl implements CardReader{
     private Card card;

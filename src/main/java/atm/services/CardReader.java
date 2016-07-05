@@ -1,4 +1,4 @@
-package atm;
+package atm.services;
 
 public interface CardReader {
     void insertCard();

@@ -1,4 +1,4 @@
-package atm;
+package consts;
 
 public enum Operation {
     WITHDRAW,

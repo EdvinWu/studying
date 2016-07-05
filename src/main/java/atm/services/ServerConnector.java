@@ -1,4 +1,4 @@
-package atm;
+package atm.services;
 
 public interface ServerConnector {
     public int getBalance(String address);

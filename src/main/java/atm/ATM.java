@@ -1,12 +1,14 @@
 package atm;
 
-import implementation.Consts;
+import atm.services.*;
+import consts.Consts;
+import consts.Operation;
 
 public abstract class ATM {
     Display display;
     CardReader cardReader;
     Input input;
-    Output output;                         
+    Output output;
     ServerConnector serverConnector;
 
     public void insertCard() {

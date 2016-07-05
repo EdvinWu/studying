@@ -1,6 +1,6 @@
 package implementation;
 
-import atm.Input;
+import atm.services.Input;
 
 public class InputImpl implements Input {
     private boolean successful = false;

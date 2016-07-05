@@ -1,7 +1,8 @@
 package implementation;
 
-import atm.Display;
-import atm.Operation;
+import atm.services.Display;
+import consts.Operation;
+import consts.Consts;
 
 public class DisplayImpl implements Display{
     private String msg = "";

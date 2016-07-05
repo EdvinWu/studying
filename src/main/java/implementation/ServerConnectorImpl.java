@@ -1,7 +1,7 @@
 package implementation;
 
-import atm.Account;
-import atm.ServerConnector;
+import atm.entity.Account;
+import atm.services.ServerConnector;
 
 public class ServerConnectorImpl implements ServerConnector {
     private Account account = new Account();

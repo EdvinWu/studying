@@ -1,4 +1,4 @@
-package atm;
+package atm.entity;
 
 public class Card {
     private String pin;

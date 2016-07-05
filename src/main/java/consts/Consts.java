@@ -1,4 +1,4 @@
-package implementation;
+package consts;
 
 public enum Consts {
     ADDRESS("somewhere@nowhere.com"),

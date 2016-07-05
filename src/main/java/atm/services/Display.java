@@ -1,4 +1,6 @@
-package atm;
+package atm.services;
+
+import consts.Operation;
 
 public interface Display {
     public void show(String s);
