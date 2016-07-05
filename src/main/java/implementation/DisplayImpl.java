@@ -3,9 +3,11 @@ package implementation;
 import atm.Display;
 
 public class DisplayImpl implements Display{
+    private String msg = "";
+
     @Override
     public void show(String s) {
-        System.out.println(s);
+        msg = s;
     }
 
     @Override
@@ -16,5 +18,9 @@ public class DisplayImpl implements Display{
     @Override
     public String getPin() {
         return Consts.PIN.toString();
+    }
+
+    public String getMsg() {
+        return msg;
     }
 }

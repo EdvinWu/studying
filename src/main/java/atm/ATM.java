@@ -41,7 +41,7 @@ public abstract class ATM {
     }
 
     public void wrongPin() {
-        display.show("Wrong pin");
+        display.show("Wrong PIN");
     }
 
     public void deposit(int amount){
