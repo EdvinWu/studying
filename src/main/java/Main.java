@@ -1,6 +1,5 @@
 import atm.ATM;
 import atm.ATMModule;
-import atm.mainimpl.ATMConsole;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import consts.Operation;
