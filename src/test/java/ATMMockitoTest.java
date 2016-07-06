@@ -13,6 +13,10 @@ import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ATMMockitoTest {
+
+
+    public static final int MAX_BALANCE = 200;
+    public static final int AMOUNT = 100;
     @InjectMocks
     ATM atm;
 
@@ -35,23 +39,29 @@ public class ATMMockitoTest {
 
     @Test
     public void testWithdrawScenario() throws Exception {
-        atm.insertCard();
         when(display.getOperation()).thenReturn(Operation.WITHDRAW);
+        when(display.getPin()).thenReturn(Consts.PIN.toString());
+        when(cardReader.checkPin(Consts.PIN.toString())).thenReturn(true);
+        when(cardReader.getAdress()).thenReturn(Consts.ADDRESS.toString());
+        when(serverConnector.getBalance(Consts.ADDRESS.toString())).thenReturn(MAX_BALANCE);
+
+        atm.insertCard();
+        verify(cardReader).insertCard();
 
         Operation op = atm.chooseOperation();
         if (op == Operation.WITHDRAW) {
-            when(display.getPin()).thenReturn(Consts.PIN.toString());
-            when(cardReader.checkPin(Consts.PIN.toString())).thenReturn(true);
+            verify(display).getOperation();
 
             if (atm.checkPin()) {
                 verify(cardReader).checkPin(Consts.PIN.toString());
-                when(cardReader.getAdress()).thenReturn(Consts.ADDRESS.toString());
-                when(serverConnector.getBalance(Consts.ADDRESS.toString())).thenReturn(200);
-                if (atm.checkSum(100)) {
+
+                if (atm.checkSum(AMOUNT)) {
                     verify(serverConnector).getBalance(Consts.ADDRESS.toString());
-                    atm.withdraw(100);
-                    verify(output).withdraw(100);
-                    verify(serverConnector).changeBalance(Consts.ADDRESS.toString(), -100);
+
+                    atm.withdraw(AMOUNT);
+                    verify(output).withdraw(AMOUNT);
+                    verify(serverConnector).changeBalance(Consts.ADDRESS.toString(), -AMOUNT);
+
                 } else {
                     atm.notEnoughError();
                 }
