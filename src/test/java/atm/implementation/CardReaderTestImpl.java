@@ -19,7 +19,7 @@ public class CardReaderTestImpl implements CardReader{
 
     @Override
     public void insertCard() {
-        card = new Card(Consts.PIN.toString(),Consts.ADDRESS.toString());
+       // card = new Card(Consts.PIN.toString(),Consts.ADDRESS.toString());
     }
 
     @Override
