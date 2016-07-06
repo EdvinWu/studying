@@ -27,7 +27,7 @@ public class ATMTest {
 
     @Test
     public void testInsertCard() throws Exception {
-        assertEquals(cardReader.getAdress(), Consts.ADDRESS.toString());
+        assertEquals(cardReader.getAddress(), Consts.ADDRESS.toString());
         assertTrue(cardReader.checkPin(Consts.PIN.toString()));
     }
 

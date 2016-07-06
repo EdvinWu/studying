@@ -42,7 +42,7 @@ public class ATMMockitoTest {
         when(display.getOperation()).thenReturn(Operation.WITHDRAW);
         when(display.getPin()).thenReturn(Consts.PIN.toString());
         when(cardReader.checkPin(Consts.PIN.toString())).thenReturn(true);
-        when(cardReader.getAdress()).thenReturn(Consts.ADDRESS.toString());
+        when(cardReader.getAddress()).thenReturn(Consts.ADDRESS.toString());
         when(serverConnector.getBalance(Consts.ADDRESS.toString())).thenReturn(MAX_BALANCE);
 
         atm.insertCard();

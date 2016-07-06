@@ -28,7 +28,7 @@ public class CardReaderTestImpl implements CardReader{
     }
 
     @Override
-    public String getAdress() {
+    public String getAddress() {
         return card.getAdress();
     }
 }
