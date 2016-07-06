@@ -1,15 +1,21 @@
 package atm;
 
 import atm.services.*;
+import com.google.inject.Inject;
 import consts.Consts;
 import consts.Operation;
 
-public abstract class ATM {
-    protected Display display;
-    protected CardReader cardReader;
-    protected Input input;
-    protected Output output;
-    protected ServerConnector serverConnector;
+public class ATM {
+    @Inject
+    Display display;
+    @Inject
+    CardReader cardReader;
+    @Inject
+    Input input;
+    @Inject
+    Output output;
+    @Inject
+    ServerConnector serverConnector;
 
     public void insertCard() {
         cardReader.insertCard();

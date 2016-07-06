@@ -1,8 +1,10 @@
 package atm.implementation;
 
 import atm.services.Output;
+import com.google.inject.Singleton;
 
-public class OutputImpl implements Output {
+@Singleton
+public class OutputTestImpl implements Output {
     private boolean successful = false;
 
     @Override

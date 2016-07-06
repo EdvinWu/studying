@@ -1,7 +1,9 @@
 package atm.implementation;
 
 import atm.services.Input;
+import com.google.inject.Singleton;
 
+@Singleton
 public class InputTestImpl implements Input {
     private boolean successful = false;
 

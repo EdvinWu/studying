@@ -2,7 +2,9 @@ package atm.implementation;
 
 import atm.entity.Account;
 import atm.services.ServerConnector;
+import com.google.inject.Singleton;
 
+@Singleton
 public class ServerConnectorTestImpl implements ServerConnector {
     private Account account = new Account();
     @Override

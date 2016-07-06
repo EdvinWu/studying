@@ -1,8 +1,14 @@
+import atm.ATM;
+import atm.ATMModule;
 import atm.mainimpl.ATMConsole;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import consts.Operation;
 
 public class Main {
-    static ATMConsole atmConsole = new ATMConsole();
+    //static ATMConsole atmConsole = new ATMConsole();
+    static Injector injector = Guice.createInjector(new ATMModule());
+    static ATM atmConsole = injector.getInstance(ATM.class);
 
     public static void main(String[] args) {
         Operation choose = atmConsole.chooseOperation();

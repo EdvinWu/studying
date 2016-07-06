@@ -2,8 +2,10 @@ package atm.implementation;
 
 import atm.entity.Card;
 import atm.services.CardReader;
+import com.google.inject.Singleton;
 import consts.Consts;
 
+@Singleton
 public class CardReaderTestImpl implements CardReader{
     private Card card;
 
