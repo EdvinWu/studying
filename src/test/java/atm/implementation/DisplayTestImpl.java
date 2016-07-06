@@ -5,8 +5,6 @@ import com.google.inject.Singleton;
 import consts.Operation;
 import consts.Consts;
 
-import static org.junit.Assert.assertEquals;
-
 @Singleton
 public class DisplayTestImpl implements Display{
     private String msg = "";
@@ -18,7 +16,6 @@ public class DisplayTestImpl implements Display{
 
     @Override
     public void show(String s) {
-        assertEquals(s, Consts.NOT_ENOUGH_AMOUNT.toString());
         msg = s;
     }
 

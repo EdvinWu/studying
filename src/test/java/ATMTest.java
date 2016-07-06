@@ -1,7 +1,6 @@
 import atm.*;
 import atm.services.*;
 import com.google.inject.Guice;
-import com.google.inject.Inject;
 import com.google.inject.Injector;
 import consts.Consts;
 import consts.Operation;
@@ -14,16 +13,12 @@ import static org.junit.Assert.*;
 public class ATMTest {
     Injector injector = Guice.createInjector(new TestModule());
     ATM atm = injector.getInstance(ATM.class);
-    @Inject
-    CardReader cardReader;
-    @Inject
-    Display display;
-    @Inject
-    Output output;
-    @Inject
-    ServerConnector serverConnector;
-    @Inject
-    Input input;
+
+    CardReader cardReader = injector.getInstance(CardReader.class);
+    Display display = injector.getInstance(Display.class);
+    Output output = injector.getInstance(Output.class);
+    ServerConnector serverConnector = injector.getInstance(ServerConnector.class);
+    Input input = injector.getInstance(Input.class);
 
     @Before
     public void prepareTests() {
@@ -72,8 +67,10 @@ public class ATMTest {
     @Test
     public void testNotEnoughError() throws Exception {
         atm.notEnoughError();
-    //    assertEquals(((DisplayTestImpl)display).getMsg(), Consts.NOT_ENOUGH_AMOUNT.toString());
+        assertEquals(((DisplayTestImpl)display).getMsg(), Consts.NOT_ENOUGH_AMOUNT.toString());
     }
+
+
 
     @Test
     public void testWrongPin() throws Exception {
